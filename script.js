@@ -46,7 +46,7 @@ axios.interceptors.response.use(updateEndTime, (e) => {
 
 const { requestEditor, updateResponseEditor } = setupEditors();
 
-form.addEventListener("submit", (e) => {
+form.addEventListener("click", (e) => {
     e.preventDefault();
     console.log(e);
 
