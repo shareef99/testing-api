@@ -2,7 +2,7 @@ import axios from "axios";
 import prettyBytes from "pretty-bytes";
 import setupEditors from "./setupEditor";
 
-const form = document.querySelector("[data-form]");
+const sendBtn = document.querySelector("[data-submit-btn]");
 const queryParamsContainer = document.querySelector("[data-query-params]");
 const requestHeadersContainer = document.querySelector(
     "[data-request-headers]"
@@ -46,7 +46,7 @@ axios.interceptors.response.use(updateEndTime, (e) => {
 
 const { requestEditor, updateResponseEditor } = setupEditors();
 
-form.addEventListener("click", (e) => {
+sendBtn.addEventListener("click", (e) => {
     e.preventDefault();
     console.log(e);
 

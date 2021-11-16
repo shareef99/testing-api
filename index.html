@@ -15,7 +15,7 @@
     </head>
     <body>
         <div class="p-4">
-            <form data-form>
+            <form>
                 <div class="input-group mb-4">
                     <select class="form-select flex-grow-0 w-auto" data-method>
                         <option value="GET" selected>GET</option>
@@ -31,7 +31,13 @@
                         type="url"
                         placeholder="https://example.com"
                     />
-                    <button type="button" class="btn btn-primary">Send</button>
+                    <button
+                        type="button"
+                        data-submit-btn
+                        class="btn btn-primary"
+                    >
+                        Send
+                    </button>
                 </div>
 
                 <ul class="nav nav-tabs" role="tablist">
