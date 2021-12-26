@@ -51,6 +51,22 @@ sendBtn.addEventListener("click", (e) => {
     console.log(e);
 
     let data;
+    const url = document.querySelector("[data-url]").value;
+
+    if (!url) {
+        alert("Please enter a URL");
+        return;
+    }
+
+    // Regex for localhost urls
+    const isLocalhost = /^(http|https):\/\/localhost(:\d+)?/;
+    const urlRegex =
+        /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;
+    if (!urlRegex.test(url) && !isLocalhost.test(url)) {
+        alert("Please enter a valid URL");
+        return;
+    }
+
     try {
         data = JSON.parse(requestEditor.state.doc.toString() || null);
     } catch (e) {
@@ -59,7 +75,7 @@ sendBtn.addEventListener("click", (e) => {
     }
 
     axios({
-        url: document.querySelector("[data-url]").value,
+        url,
         method: document.querySelector("[data-method]").value,
         params: keyValuePairsToObjects(queryParamsContainer),
         headers: keyValuePairsToObjects(requestHeadersContainer),
@@ -74,7 +90,12 @@ sendBtn.addEventListener("click", (e) => {
             updateResponseEditor(response.data);
             updateResponseHeaders(response.headers);
             console.log(response);
-        });
+        })
+        .catch((e) =>
+            alert(
+                "Error is occurring while sending request, please check console"
+            )
+        );
 });
 
 function updateResponseDetails(response) {
